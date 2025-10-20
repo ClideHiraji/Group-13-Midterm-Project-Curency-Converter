@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Ensure layout works on all device sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Portfolio - IT110 Project</title>
+    <!-- Main stylesheet for overall site look -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Site navigation: lets users jump between sections -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero section: site intro, big heading and fun visual backgrounds -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <!-- These shapes and grid add some visual energy to the hero -->
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <!-- Eye-catching animated title -->
+            <h1 class="glitch-text" data-text="TrioCKE">TrioCKE</h1>
+            <p class="hero-subtitle">Crafting Digital Experiences</p>
+            <!-- Brief intro for the team -->
+            <p class="hero-description">
+                Three passionate developers pushing the boundaries of web development through innovation, collaboration, and cutting-edge technologies.
+            </p>
+            <!-- Quick stats for some personality -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Team Members</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Dedication</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Possibilities</span>
+                </div>
+            </div>
+            <!-- Calls to action: jump to projects or meet our team -->
+            <div class="hero-cta">
+                <a href="#projects" class="btn-primary btn-glow">Explore Projects</a>
+                <a href="#about" class="btn-secondary">Meet the Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About section: team profile and bios -->
+    <section id="about" class="container">
+        <h2>About Our Team</h2>
+        <div class="about-content">
+            <!-- What we do in a nutshell -->
+            <p>We are a dedicated team of three students passionate about web development and technology. Our mission is to create innovative and user-friendly web applications that solve real-world problems. Through collaboration and continuous learning, we strive to deliver high-quality projects that showcase our skills in HTML, CSS, JavaScript, and API integration.</p>
+        </div>
+
+        <!-- Team member highlights with their roles and bios -->
+        <div class="members-grid">
+            <div class="member-card">
+                <div class="member-image">
+                    <!-- Add your team member's photo here -->
+                    <img src="images/estrella.png" alt="Estrelle">
+                </div>
+                <h3>Estrelle</h3>
+                <p class="role">HTML Structure & Semantics</p>
+                <p class="bio">Passionate about creating clean and semantic HTML structures. Focuses on accessibility and proper document structure to ensure the best user experience.</p>
+            </div>
+
+            <div class="member-card">
+                <div class="member-image">
+                    <img src="images/guinea.jpg" alt="Kieth">
+                </div>
+                <h3>Kieth</h3>
+                <p class="role">CSS Styling & Layout</p>
+                <p class="bio">Creative designer with an eye for aesthetics. Specializes in responsive design and modern CSS techniques to create visually appealing interfaces.</p>
+            </div>
+
+            <div class="member-card">
+                <div class="member-image">
+                    <img src="images/Jagape.jpg" alt="Clide">
+                </div>
+                <h3>Clide</h3>
+                <p class="role">JavaScript Logic & API Integration</p>
+                <p class="bio">Expert in JavaScript and API integration. Loves building interactive features and connecting applications with external services to enhance functionality.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio section: features your projects -->
+    <section id="projects" class="container projects-section">
+        <h2>Our Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <!-- Project icon or logo; makes the card easy to spot -->
+                <div class="project-icon">💱</div>
+                <h3>Converto</h3>
+                <!-- Quick blurb about what the project does -->
+                <p>
+                    A real-time currency converter application that uses live exchange rates from a public API. Convert between multiple currencies with an intuitive and user-friendly interface.
+                </p>
+                <!-- List out important features for rapid scanning -->
+                <div class="project-features">
+                    <span class="feature-tag">JavaScript</span>
+                    <span class="feature-tag">API Integration</span>
+                    <span class="feature-tag">Real-time Data</span>
+                </div>
+                <!-- Link to try or view the project -->
+                <a href="JS API/app.html" target="_blank" class="btn-primary">View Project</a>
+            </div>
+
+            <!-- Placeholder for future ideas — makes it clear you plan to grow -->
+            <div class="project-card coming-soon">
+                <div class="project-icon">🚀</div>
+                <h3>More Projects Coming Soon</h3>
+                <p>We're constantly working on new and exciting projects. Stay tuned for more innovative web applications!</p>
+                <div class="project-features">
+                    <span class="feature-tag">In Development</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section: ways to reach your team -->
+    <section id="contact" class="container contact-section">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <p>Have questions about our projects or want to collaborate? Feel free to reach out to us!</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <!-- Team members' emails -->
+                    <span class="contact-icon">📧</span>
+                    <p>Email: kingclide.jagape@carsu.edu.ph</p>
+                    <p>Email: estrellemae.adlawon@carsu.edu.ph</p>
+                    <p>Email: keithlyn.guinea@carsu.edu.ph</p>
+                </div>
+                <div class="contact-item">
+                    <!-- Your LinkedIn profile or group -->
+                    <span class="contact-icon">🔗</span>
+                    <p>LinkedIn: TrioCKE</p>
+                </div>
+                <div class="contact-item">
+                    <!-- Team's preferred phone number -->
+                    <span class="contact-icon">📞</span>
+                    <p>Dial: 09012345678</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer: copyright and design credit, rounds off the page -->
+    <footer>
+        <p>&copy; 2025 Design by TrioCKE. All rights reserved.</p>
+    </footer>
+
+    <!-- Your main JavaScript file: add interactive features here -->
+    <script src="script.js"></script>
+</body>
+</html>

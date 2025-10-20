@@ -1,0 +1,555 @@
+/* reset margin and padding for all elements, and use border-box sizing for consistent layouts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* enable smooth scroll for anchor navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* set base styles and dark background for whole page */
+body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    line-height: 1.6;
+    color: #e4e4e7;
+    background-color: #0a0e1a;
+}
+
+/* ---------------------------------------------------------------------
+   navigation bar styles
+------------------------------------------------------------------------*/
+
+/* sticky navigation, dark overlay, small blur for glass look */
+nav {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+/* horizontal navigation list with spacing and wrapping for long navs */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* nav links: light color, make clickable, rounded on hover */
+nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* highlight active link on hover */
+nav a:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: #60a5fa;
+}
+
+/* ---------------------------------------------------------------------
+   hero section with animated shapes and gradient overlays
+------------------------------------------------------------------------*/
+
+/* hero layout fills entire screen, centers content, deep gradient background */
+.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0c4a6e 100%);
+    padding: 8rem 2rem;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* the background wrapper for animated shapes (no pointer events so doesn't block clicks) */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* animated grid overlay for extra visual style */
+.grid-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+/* grid slowly drifts diagonally */
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* blurry animated floating shapes, each shape can be uniquely positioned and colored */
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    animation: float 20s ease-in-out infinite;
+}
+
+/* bright blue circle, top left */
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+    top: 10%;
+    left: 10%;
+}
+
+/* purple-pink circle, bottom right, delayed animation */
+.shape-2 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    bottom: 20%;
+    right: 15%;
+    animation-delay: 5s;
+}
+
+/* blue-cyan circle, more centered, delayed */
+.shape-3 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    top: 50%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+/* float animation: each shape gently drifts and scales */
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+/* center hero content and keep above background shapes */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+}
+
+/* large glitch heading with modern gradient text */
+.glitch-text {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+}
+
+/* smaller subtitle below heading */
+.hero-subtitle {
+    font-size: 1.8rem;
+    color: #cbd5e1;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* description text for hero section */
+.hero-description {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* group for hero stats e.g. project counts */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* CTA button area under hero */
+.hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------------------
+   button styles
+------------------------------------------------------------------------*/
+
+/* shared button styles, big rounded, animated on hover */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* main colored button with glowing shadow and pulse */
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+    color: white;
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.6);
+}
+
+/* pulsing shadow for lively button effect */
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4); }
+    50% { box-shadow: 0 12px 40px rgba(59, 130, 246, 0.6); }
+}
+
+/* secondary button, less prominent, border highlight on hover */
+.btn-secondary {
+    background: transparent;
+    color: #cbd5e1;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: translateY(-2px);
+    color: #60a5fa;
+}
+
+/* ---------------------------------------------------------------------
+   container, grid, and card layouts
+------------------------------------------------------------------------*/
+
+/* content container for sections, sets max width and padding */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+}
+
+/* add scroll offset for anchor navigation, so not hidden under sticky nav */
+section {
+    scroll-margin-top: 80px;
+}
+
+/* large section headings with gradient underline */
+h2 {
+    color: #f1f5f9;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6 0%, #0ea5e9 100%);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+/* about/summary box styling */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* grid layout for team/project cards, auto-fit for responsiveness */
+.members-grid, .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* card UI: soft glassmorphism look, shadow on hover */
+.member-card, .project-card, .contact-item {
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    transition: all 0.4s ease;
+}
+
+.member-card:hover, .project-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+}
+
+/* team member/profile photo styling */
+.member-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #3b82f6;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* section and card titles */
+.member-card h3, .project-card h3 {
+    color: #f1f5f9;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+/* role/position for team members */
+.member-card .role {
+    color: #60a5fa;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* subtitles/descriptions for team/project cards */
+.member-card .bio, .project-card p {
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+/* large icon for each project */
+.project-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.project-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.project-card p {
+    margin-bottom: 1.5rem;
+}
+
+/* row of feature tags for each project */
+.project-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+/* colorful highlight tag for each feature */
+.feature-tag {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* box background for projects/contact sections */
+.projects-section, .contact-section {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 24px;
+    border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.project-card.coming-soon {
+    border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+/* ---------------------------------------------------------------------
+   contact section styles
+------------------------------------------------------------------------*/
+
+/* main content wrapper for contact info */
+.contact-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contact-content > p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #94a3b8;
+}
+
+/* grid for social/contact methods */
+.contact-info {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* contact items slide slightly on hover */
+.contact-item:hover {
+    transform: translateX(8px);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+/* contact icon size */
+.contact-icon {
+    font-size: 2rem;
+}
+
+.contact-item p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #cbd5e1;
+}
+
+/* ---------------------------------------------------------------------
+   footer styles
+------------------------------------------------------------------------*/
+
+footer {
+    background: #0f172a;
+    color: #64748b;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+/* ---------------------------------------------------------------------
+   responsive (mobile) tweaks
+------------------------------------------------------------------------*/
+
+@media (max-width: 768px) {
+    .glitch-text {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-stats {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-cta a {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .floating-shape {
+        filter: blur(40px);
+    }
+    
+    .shape-1 {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .shape-2 {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .shape-3 {
+        width: 220px;
+        height: 220px;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .members-grid, .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    nav ul {
+        gap: 1rem;
+    }
+    
+    .container {
+        padding: 3rem 1rem;
+    }
+}

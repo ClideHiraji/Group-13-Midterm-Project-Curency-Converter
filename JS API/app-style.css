@@ -1,0 +1,371 @@
+/* import Inter font (weights 300–700) from Google Fonts for modern, clean typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS custom properties for colors and consistent theming */
+:root {
+  --accent-start: #3b82f6;         /* blue accent for gradients and buttons */
+  --accent-end: #9333ea;           /* purple accent for gradients and buttons */
+  --bg-gradient-start: #503471;    /* background gradient start */
+  --bg-gradient-end: #0a2b65;      /* background gradient end */
+  --text-primary: #f9fafb;         /* primary text color (sunny white) */
+  --text-secondary: #e5e7eb;       /* secondary text color (light gray) */
+  --shadow-glow: rgba(0, 153, 255, 0.6);  /* glowing blue shadow for highlight */
+}
+
+/* reset default browser styles and apply base font to all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+/* center everything and use a full-page animated gradient background */
+body {
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  width: 100%;
+  height: 100dvh; /* dynamic viewport height for mobile friendliness */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* create abstract blurred circles as animated background ornaments */
+.circle {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;   /* make perfect circle */
+  filter: blur(120px);  /* strong blur for soft edge */
+  animation: pulse 6s ease-in-out infinite alternate;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+/* purple and blue circles, positioned in different corners for depth */
+.circle--purple {
+  background: radial-gradient(circle at center, #6406b9, transparent 70%);
+  top: 20%;
+  left: 15%;
+}
+
+.circle--blue {
+  background: radial-gradient(circle at center, rgba(180, 207, 250, 0.829), transparent 70%);
+  bottom: -1%;
+  right: 26%;
+}
+
+/* gently scale and blur the circles for continuous movement */
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    filter: blur(100px);
+  }
+  to {
+    transform: scale(1.1);
+    filter: blur(140px);
+  }
+}
+
+/* make sure converter widget appears above animated circles */
+.currency-converter {
+  position: relative;
+  z-index: 1;
+}
+
+/* glassmorphism effect for the main converter container */
+.currency-converter {
+  background: linear-gradient(145deg, #003e67a6, #109dd3b3);
+  border-radius: 24px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 0 16px var(--shadow-glow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: glow-pulse 3s ease-out infinite alternate;
+}
+
+/* slow glowing animation for the container, creates a floating look */
+@keyframes glow-pulse {
+  from {
+    box-shadow: 0 0 8px var(--shadow-glow);
+  }
+  to {
+    box-shadow: 0 0 24px var(--shadow-glow);
+  }
+}
+
+/* flex container for project logo and title, centered horizontally */
+.project-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;               /* consistent gap between logo and title */
+  margin-bottom: 2rem;
+}
+
+/* large emoji or image logo, vertically and horizontally centered */
+.logo {
+  font-size: 3rem;         /* ensures emoji fills the square */
+  padding-bottom: 5px;
+  padding-right: 2px;
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 16px rgb(0 0 0 / 35%);
+  border-radius: 50%;
+  background: linear-gradient( 270deg, #873fec, #4a75f4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* main title for the widget, bold and prominent */
+.currency-converter_title {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+/* large, rounded input for entering currency values */
+.currency-converter_input {
+  width: 100%;
+  padding: 1.25rem;
+  font-size: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  background: linear-gradient(171deg, #ffffff3b, transparent, #ffffff3b);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s, background-position 0.5s ease;
+}
+
+/* placeholder text is white with partial transparency for subtlety */
+.currency-converter_input::placeholder {
+    color: white;
+    opacity: 0.7;
+}
+
+/* remove number input spinners (better UI for currency inputs) */
+.currency-converter_input::-webkit-inner-spin-button,
+.currency-converter_input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* hide loading spinner by default (to be shown later by script if desired) */
+.currency-converter_input-container,
+.currency-converter-spinner {
+  display: none;
+}
+
+/* animated highlight and border color when hovering or focused */
+.currency-converter_input:hover,
+.currency-converter_input:focus {
+  background-position: 100% 50%;
+  border-color: rgba(103, 164, 243, 0.75);
+  outline: none;
+}
+
+/* three-column grid for dropdowns and swap button */
+.currency-converter_select-group {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* source select | swap button | target select */
+  gap: 1.25rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* wrapper for flag and dropdown, keeps them nicely aligned */
+.currency-converter_select {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* dark, custom-styled dropdowns */
+select {
+  background-color: #2c3e50;
+  color: #fff;
+  outline: none;
+}
+option {
+  background-color: #2c3e50;
+  color: #fff;
+}
+
+/* currency flag images are placed absolutely inside the input area */
+.currency-converter_select img {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 24px;
+  border-radius: 6px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* custom styling for select with room for flag, rounded and elevated */
+.currency-converter_select select {
+  text-align: left;
+  width: 100%;
+  padding: 1rem 1rem 1rem 3.5rem; /* space on left for flag */
+  font-size: 1.125rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  background: linear-gradient(171deg, #ffffff3b, transparent, #ffffff3b);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s, background-position 0.5s ease;
+}
+
+/* highlight select on hover and focus for accessibility */
+.currency-converter_select select:hover,
+.currency-converter_select select:focus {
+  background-position: 100% 50%;
+  border-color: rgba(103, 164, 243, 0.75);
+  outline: none;
+}
+
+/* large, rounded circular swap button with interactive visual effects */
+.currency-converter_swap-button {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end), var(--accent-start));
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-position 0.5s ease, transform 0.1s, box-shadow 0.2s;
+}
+
+/* deeper shadow and gradient shift on hover for swap button */
+.currency-converter_swap-button:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* quick rotation and scale down on click for tactile feedback */
+.currency-converter_swap-button:active {
+  transform: rotate(90deg) scale(0.9);
+}
+
+/* conversion rate info, lightly styled for contrast */
+.currency-converter_exchange-rate {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(147,51,234,0.15));
+}
+
+/* bold, animated gradient button for conversion action */
+.currency-converter_converter-button {
+  width: 100%;
+  padding: 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end), var(--accent-start));
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-position 0.5s ease, box-shadow 0.2s, transform 0.1s;
+}
+
+/* gradient animation and shadow deepen on hover */
+.currency-converter_converter-button:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* scale down slightly on active press for feedback */
+.currency-converter_converter-button:active {
+  transform: scale(0.95);
+}
+
+/* styles for footer and small print */
+.footer {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.footer-text {
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+
+/* Responsive design: Adjusts layout and font sizing for mobile screens */
+@media (max-width: 768px) {
+  .currency-converter {
+    padding: 2rem 1.5rem;
+    max-width: 95%;
+  }
+  
+  .currency-converter_title {
+    font-size: 1.75rem;
+  }
+  
+  .logo {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* Stack the select boxes and center swap button for mobile layout */
+  .currency-converter_select-group {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .currency-converter_swap-button {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+  
+  .currency-converter_input,
+  .currency-converter_converter-button {
+    font-size: 1.125rem;
+    padding: 1rem;
+  }
+  
+  .currency-converter_select select {
+    font-size: 1rem;
+  }
+}
+
+/* focus-visible improves accessibility for keyboard users */
+.currency-converter_converter-button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* visually mute inputs and selects when disabled, cursor becomes not-allowed */
+.currency-converter_input:disabled,
+.currency-converter_select select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

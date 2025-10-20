@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Make layout respond nicely on all device sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <!-- Main styling for the currency converter app -->
+    <link rel="stylesheet" href="app-style.css">
+    <!-- Icon set used for swap arrow (Boxicons) -->
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- Decorative background circles for stylish look -->
+    <div class="circle circle--purple"></div>
+    <div class="circle circle--blue"></div>
+
+    <main class="currency-converter">
+        <!-- App header: logo and title -->
+        <div class="project-head"> 
+          <div class="logo">💱</div> 
+          <h3 class="currency-converter_title">Converto</h3>
+        </div>
+        <!-- Input field for amount to convert -->
+        <input class="currency-converter_input" placeholder="0" type="number" id="inputSourceCurrency">
+
+        <!-- Dropdowns for source and target currencies, and swap button in the middle -->
+        <div class="currency-converter_select-group">
+            <div class="currency-converter_select">
+                <img id="imageSourceCurrency" src="https://flagcdn.com/w640/us.png">
+                <select id="selectSourceCurrency">
+                </select>
+            </div>
+            
+            <!-- Click this to swap the selected currencies and flags -->
+            <button id="buttonSwap" class="currency-converter_swap-button">
+                <i class="bx bx-swap-horizontal"></i>
+            </button>
+
+            <div class="currency-converter_select">
+                <img id="imageTargetCurrency" src="https://flagcdn.com/w640/ph.png">
+                <select id="selectTargetCurrency">
+                </select>
+            </div>
+        </div>
+
+        <!-- Shows the current exchange rate and conversion result -->
+        <div class="currency-converter_exchange-rate">
+            <span id="exchangeRateText" class="currency-converter_exchange-rate-text">
+                0 USD = 0 PHP
+            </span>
+        </div>
+
+        <!-- Button to trigger conversion (uses a div for styling flexibility) -->
+        <div id="buttonConvert" class="currency-converter_converter-button">Convert</div>
+
+        <!-- Credits and API providers in the footer -->
+        <div class="footer">
+            <h5 class="footer-text">Powered By:</h5>
+            <a href="https://app.exchangerate-api.com/">
+                <h5 class="footer-text">Exchange Rate - API</h5>
+            </a>
+            <h5 class="footer-text">|</h5>
+            <a href="https://flagcdn.com/">
+                <h5 class="footer-text">Flag CDN</h5>
+            </a>
+            <h5 class="footer-text">|</h5>
+            <a href="https://boxicons.com/">
+                <h5 class="footer-text">Box Icons</h5>
+            </a>
+        </div>
+    </main>
+
+    <!-- Main application logic, loaded as JS module -->
+    <script src="app-script.js" type="module"></script>
+</body>
+</html>
