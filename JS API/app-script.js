@@ -239,7 +239,6 @@ currencySelectElements.forEach(selectElement => {
 // ============================================================
 /**
  * Changes the flag image based on selected currency
- * @param {HTMLSelectElement} selectElement - The select dropdown that changed
  */
 function changeFlag(selectElement) {
     // Get the selected currency code
@@ -270,8 +269,6 @@ function changeFlag(selectElement) {
 // ============================================================
 /**
  * Formats a number with thousands separators for better readability
- * @param {number} number - The number to format
- * @returns {string} - Formatted number string (e.g., "1,234.56")
  */
 function formatCurrency(number) {
     return new Intl.NumberFormat().format(number);
